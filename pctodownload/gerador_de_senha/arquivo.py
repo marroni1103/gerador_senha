@@ -27,6 +27,7 @@ def criarsenha(arq, nome, qtd):
     senha = []
     letras = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S',
               'T', 'U', 'V', 'W', 'Y', 'X', 'Z']
+    letrasenumeros = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'l', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'y', 'x', 'z', 1, 2, 3, 4, 5, 6, 7, 8, 9]
     char = ['!', '@', '?', '&', "$"]
     if tipo == 'N':
         for n in range(0, qtd):
@@ -35,13 +36,15 @@ def criarsenha(arq, nome, qtd):
         caracter = input(f'Precisa de caracteres especiais? [S/N] ').strip().upper()[0]
         if caracter == 'S':
             senha.append(choice(letras))
-            for n in range(0, qtd-2):
-                senha.append(randint(1, 9))
+            senha.append(randint(1, 9))
             senha.append(choice(char))
+            for n in range(0, qtd-3):
+                senha.append(choice(letrasenumeros))
         elif caracter == 'N':
             senha.append(choice(letras))
-            for n in range(0, qtd-1):
-                senha.append(randint(1, 9))
+            senha.append(randint(1, 9))
+            for n in range(0, qtd-2):
+                senha.append(choice(letrasenumeros))
     shuffle(senha)
     try:
         a = open(arq, 'at')
